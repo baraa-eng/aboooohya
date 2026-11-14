@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE FINAL GIFT</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle, #501010, #160000 55%, #050505);
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    padding: 35px 20px;
+    background: #100808dd;
+    border: 2px solid #ff2525;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #ff000066,
+                inset 0 0 25px #ff000022;
+    z-index: 2;
+}
+
+h1 {
+    color: #ff2929;
+    font-size: 30px;
+    text-shadow: 0 0 15px red;
+}
+
+.gift {
+    font-size: 100px;
+    margin: 25px;
+    cursor: pointer;
+}
+
+button {
+    background: linear-gradient(45deg, #9d0000, #ff2929);
+    border: 2px solid #ff7777;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 16px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 20px red;
+}
+
+#message { display: none; }
+
+.message-title {
+    color: #ff3030;
+    font-size: 30px;
+    text-shadow: 0 0 15px red;
+}
+
+.message-text {
+    font-size: 23px;
+    line-height: 2.1;
+}
+
+.highlight {
+    color: #ff2525;
+    font-weight: bold;
+    text-shadow: 0 0 12px red;
+}
+
+.final {
+    font-size: 32px;
+    color: #ff2525;
+    font-weight: bold;
+    margin-top: 25px;
+    text-shadow: 0 0 20px red;
+}
+
+.heart {
+    position: fixed;
+    bottom: -60px;
+    pointer-events: none;
+    animation: fly 4s linear forwards;
+    z-index: 1;
+}
+
+@keyframes fly {
+    to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div id="start">
+    <h1>ATTENTION EVERYONE</h1>
+    <p>رسالة خاصة إلى جميع محبي أبو حيّة</p>
+    <div class="gift" onclick="openGift()">🎁</div>
+    <h1>YOUR FINAL GIFT</h1>
+    <button onclick="openGift()">OPEN THE GIFT</button>
+</div>
+
+<div id="message">
+    <div style="font-size:65px">🔥💀🔥</div>
+
+    <h1 class="message-title">بيان رسمي عاجل</h1>
+
+    <div class="message-text">
+        إلى جميع محبي أبو حيّة:
+
+        <br>
+
+        كل اللي بالمكتب
+        <span class="highlight">كلاب</span>
+
+        <br>
+
+        وكل اللي برا المكتب
+        <span class="highlight">زلام</span>
+    </div>
+
+    <div class="final">
+        لَعْنَتُكُمُ الآلِهَةُ.
+    </div>
+
+    <p style="color:#ff7777;margin-top:25px">
+        END OF STATEMENT.
+    </p>
+</div>
+
+</div>
+
+<script>
+let opened = false;
+
+function openGift() {
+    if(opened) return;
+    opened = true;
+
+    document.getElementById("start").style.display = "none";
+    document.getElementById("message").style.display = "block";
+
+    const emojis = ["🔥","💀","❤️‍🔥","💥","⚡"];
+
+    function createEffect() {
+        let item = document.createElement("div");
+        item.className = "heart";
+        item.innerText = emojis[Math.floor(Math.random()*emojis.length)];
+        item.style.left = Math.random()*100+"vw";
+        item.style.fontSize = (25+Math.random()*35)+"px";
+        item.style.animationDuration = (2+Math.random()*3)+"s";
+
+        document.body.appendChild(item);
+        setTimeout(()=>item.remove(),5000);
+    }
+
+    for(let i=0;i<100;i++) {
+        setTimeout(createEffect,i*35);
+    }
+
+    setInterval(createEffect,150);
+}
+</script>
+
+</body>
+</html>
